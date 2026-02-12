@@ -1,0 +1,12 @@
+# Node, Python, y archivos temporales
+node_modules/
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+# Archivos de sistema
+Thumbs.db
+# Salidas temporales
+*.pdf

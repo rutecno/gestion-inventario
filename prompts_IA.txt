@@ -1,0 +1,27 @@
+Prompts de IA utilizados en el desarrollo del Sistema de Gestión de Inventarios Empresarial (Frontend):
+
+1. Diseño de estructura de datos:
+"Diseña la estructura de datos para productos, categorías y movimientos de inventario usando JavaScript y localStorage."
+
+2. Lógica de control de stock:
+"¿Cómo implemento la lógica para actualizar el stock automáticamente al registrar entradas y salidas de productos?"
+
+3. Optimización de funciones:
+"Optimiza las funciones de CRUD para productos y categorías, asegurando eficiencia y claridad."
+
+4. Mejora de experiencia de usuario:
+"Sugiere mejoras para la experiencia de usuario en la interfaz de gestión de inventario usando Bootstrap."
+
+5. Depuración:
+"¿Cómo depuro errores comunes en la manipulación de localStorage y eventos en JavaScript puro?"
+
+6. Protección de vistas según rol:
+"¿Cómo protejo las vistas y funcionalidades según el rol (admin/empleado) solo con JavaScript y localStorage?"
+
+7. Persistencia total en localStorage:
+"¿Cómo garantizo que todos los datos y cambios se mantengan persistentes en localStorage, incluso tras recargar la página?"
+
+8. Panel de estadísticas:
+"¿Cómo genero un panel de estadísticas con productos de bajo stock y productos con más movimientos usando solo JavaScript y Bootstrap?"
+
+Reflexión: El uso de IA permitió acelerar el diseño de la estructura, optimizar la lógica y mejorar la experiencia de usuario, asegurando un desarrollo profesional y eficiente sin backend.
