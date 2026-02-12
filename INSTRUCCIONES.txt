@@ -1,0 +1,122 @@
+INSTRUCCIONES DE USO - SISTEMA DE GESTIÓN DE INVENTARIO ACTUALIZADO
+==================================================================
+
+CAMBIOS REALIZADOS:
+===================
+
+1. SISTEMA DE AUTENTICACIÓN Y REGISTRO DE USUARIOS
+   - Se ha implementado un sistema completo de registro de usuarios
+   - Registro requerido: nombre, apellido, cédula, teléfono, correo, usuario y contraseña
+   - Los nuevos usuarios se crean con rol de "Empleado" por defecto
+   - Login con verificación de usuario y contraseña
+
+2. PÁGINA DE INICIO (INDEX.HTML)
+   - Ahora tiene dos opciones: "Iniciar Sesión" y "Registrarse"
+   - Los usuarios pueden crear una nueva cuenta fácilmente
+
+3. SISTEMA DE ROLES
+   - Administrador: Acceso total a todas las funciones
+   - Empleado: Acceso limitado (solo ver inventario y registrar movimientos)
+   - Solo el administrador puede asignar roles a otros usuarios
+
+4. GESTIÓN DE USUARIOS (NUEVA SECCIÓN)
+   - Acceso solo para administradores
+   - Menú: Gestión de Usuarios
+   - Permite ver todos los usuarios registrados y cambiar sus roles
+   - El administrador puede promover empleados a administradores
+
+5. AGREGAR PRODUCTOS
+   - Se ha mejorado el sistema de categorías
+   - Validación mejorada para evitar agregar productos sin categoría
+   - Mensaje de ayuda claramente visible si no hay categorías
+
+6. REPORTES EN PDF
+   - En la sección de Reportes (solo administrador)
+   - Nuevo botón "Descargar PDF"
+   - Genera un reporte completo con estadísticas y movimientos
+
+INSTRUCCIONES DE INICIO:
+========================
+
+PRIMER USO:
+1. Abre el archivo "init.html" en tu navegador
+2. Crea un usuario administrador (aparecen valores por defecto)
+   - Usuario: admin
+   - Contraseña: admin123
+3. Haz clic en "Crear Usuario Admin"
+4. Ya puedes acceder al sistema
+
+INICIAR SESIÓN:
+1. Abre "index.html"
+2. Ingresa usuario y contraseña
+3. Se te redirige al dashboard
+
+FUNCIONES POR ROL:
+
+ADMINISTRADOR:
+- Gestionar productos (crear, editar, eliminar)
+- Gestionar categorías
+- Registrar movimientos de inventario
+- Ver reportes y descargar en PDF
+- Gestionar usuarios y asignar roles
+
+EMPLEADO:
+- Ver inventario disponible
+- Registrar movimientos de entrada y salida
+
+ESTRUCTURA DE ARCHIVOS:
+======================
+- index.html: Página de inicio (login)
+- register.html: Página de registro de usuarios
+- init.html: Página para inicializar el administrador
+- dashboard.html: Panel principal
+- productos.html: Gestión de productos
+- movimientos.html: Registro de movimientos
+- reportes.html: Panel de estadísticas
+- user-management.html: Gestión de usuarios y roles
+- js/storage.js: Gestión de localStorage
+- js/auth.js: Autenticación y registro
+- js/app.js: Validaciones generales
+- js/ui.js: Interfaz dinámica
+- js/productos.js: CRUD de productos
+- js/movimientos.js: Registro de movimientos
+- js/reportes.js: Estadísticas y PDF
+- js/user-management.js: Gestión de usuarios
+- css/styles.css: Estilos personalizados
+
+DATOS GUARDADOS EN LOCALSTORAGE:
+================================
+- usuarios: Array de usuarios registrados
+- productos: Array de productos del inventario
+- categorias: Array de categorías
+- movimientos: Historial de movimientos
+- user: Datos del usuario actualmente conectado
+
+NOTAS IMPORTANTES:
+==================
+- Los datos se guardan en localStorage del navegador
+- Si limpias el cache del navegador, se pierden todos los datos
+- Para una versión producción, se recomienda usar una base de datos real
+- Las contraseñas no están encriptadas (solo para desarrollo)
+- Los PDFs se generan en el lado del cliente (sin servidor)
+
+SOLUCIÓN DE PROBLEMAS:
+======================
+1. ¿No puedo agregar productos?
+   - Primero crea al menos una categoría
+   - Intenta desde el navegador en incógnito si persiste
+
+2. ¿Olvidé la contraseña?
+   - Abre init.html nuevamente para resetear todo
+   - Borra el localStorage del navegador
+
+3. ¿No veo la barra de navegación?
+   - Asegúrate de estar logueado correctamente
+   - Los datos de sesión se guardan en localStorage
+
+4. ¿El PDF no se descarga?
+   - Verifica que los bloqueadores de pop-ups estén deshabilitados
+   - Intenta con otro navegador
+
+Para cualquier pregunta o problema, revisa el código en los archivos JavaScript.
+¡Espero que disfrutes el sistema actualizado!

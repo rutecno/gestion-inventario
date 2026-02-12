@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Datos de Ejemplo | Gestión de Inventario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="gradient-primary">
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2 class="text-center mb-2"><i class="bi bi-database-fill"></i> Datos de Ejemplo</h2>
+            <p class="text-center auth-card-subtitle">Cargar productos de tecnología como referencia</p>
+            
+            <div id="status" class="alert alert-info d-none">
+                <i class="bi bi-hourglass-split"></i> Cargando datos...
+            </div>
+
+            <div id="content"></div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusDiv = document.getElementById('status');
+            const contentDiv = document.getElementById('content');
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            // Datos de ejemplo de tecnología
+            const datosEjemplo = {
+                categorias: [
+                    'Telefonos',
+                    'Laptops',
+                    'Tablets',
+                    'Accesorios',
+                    'Audifonos',
+                    'Monitores',
+                    'Teclados',
+                    'Mouse'
+                ],
+                productos: [
+                    // TELEFONOS
+                    { nombre: 'iPhone 15 Pro Max', categoria: 'Telefonos', stock: 12, precio: 1299.99 },
+                    { nombre: 'iPhone 15 Pro', categoria: 'Telefonos', stock: 15, precio: 999.99 },
+                    { nombre: 'Samsung Galaxy S24 Ultra', categoria: 'Telefonos', stock: 10, precio: 1299.99 },
+                    { nombre: 'Samsung Galaxy S24', categoria: 'Telefonos', stock: 18, precio: 899.99 },
+                    { nombre: 'Google Pixel 8 Pro', categoria: 'Telefonos', stock: 8, precio: 999.99 },
+                    { nombre: 'OnePlus 12', categoria: 'Telefonos', stock: 14, precio: 799.99 },
+                    { nombre: 'Xiaomi 14 Ultra', categoria: 'Telefonos', stock: 20, precio: 699.99 },
+                    { nombre: 'Huawei P60 Pro', categoria: 'Telefonos', stock: 6, precio: 849.99 },
+
+                    // LAPTOPS
+                    { nombre: 'MacBook Pro 16" M3 Max', categoria: 'Laptops', stock: 5, precio: 3499.99 },
+                    { nombre: 'MacBook Pro 14" M3', categoria: 'Laptops', stock: 7, precio: 1999.99 },
+                    { nombre: 'Dell XPS 15', categoria: 'Laptops', stock: 9, precio: 1899.99 },
+                    { nombre: 'Dell XPS 13', categoria: 'Laptops', stock: 11, precio: 1299.99 },
+                    { nombre: 'Lenovo ThinkPad X1 Carbon', categoria: 'Laptops', stock: 8, precio: 1699.99 },
+                    { nombre: 'HP Pavilion 15', categoria: 'Laptops', stock: 13, precio: 799.99 },
+                    { nombre: 'ASUS ROG Gaming Laptop', categoria: 'Laptops', stock: 6, precio: 2199.99 },
+                    { nombre: 'Acer Swift 3', categoria: 'Laptops', stock: 10, precio: 899.99 },
+
+                    // TABLETS
+                    { nombre: 'iPad Pro 12.9" M2', categoria: 'Tablets', stock: 7, precio: 1199.99 },
+                    { nombre: 'iPad Air', categoria: 'Tablets', stock: 9, precio: 799.99 },
+                    { nombre: 'iPad Mini', categoria: 'Tablets', stock: 11, precio: 599.99 },
+                    { nombre: 'Samsung Galaxy Tab S9 Ultra', categoria: 'Tablets', stock: 6, precio: 1099.99 },
+                    { nombre: 'Samsung Galaxy Tab S9', categoria: 'Tablets', stock: 8, precio: 799.99 },
+                    { nombre: 'Microsoft Surface Pro 10', categoria: 'Tablets', stock: 5, precio: 1299.99 },
+
+                    // ACCESORIOS
+                    { nombre: 'Funda iPhone Premium', categoria: 'Accesorios', stock: 45, precio: 29.99 },
+                    { nombre: 'Protector Pantalla Cristal', categoria: 'Accesorios', stock: 80, precio: 9.99 },
+                    { nombre: 'Cable USB-C Trenzado', categoria: 'Accesorios', stock: 60, precio: 14.99 },
+                    { nombre: 'Power Bank 20000mAh', categoria: 'Accesorios', stock: 35, precio: 39.99 },
+                    { nombre: 'Cargador Rápido 65W', categoria: 'Accesorios', stock: 28, precio: 49.99 },
+                    { nombre: 'Hub USB Multifunción', categoria: 'Accesorios', stock: 22, precio: 59.99 },
+
+                    // AUDIFONOS
+                    { nombre: 'Apple AirPods Pro Max', categoria: 'Audifonos', stock: 5, precio: 549.99 },
+                    { nombre: 'Apple AirPods Pro', categoria: 'Audifonos', stock: 18, precio: 249.99 },
+                    { nombre: 'Sony WH-1000XM5', categoria: 'Audifonos', stock: 9, precio: 399.99 },
+                    { nombre: 'Bose QuietComfort 45', categoria: 'Audifonos', stock: 7, precio: 379.99 },
+                    { nombre: 'JBL Flip 6', categoria: 'Audifonos', stock: 15, precio: 129.99 },
+                    { nombre: 'Samsung Galaxy Buds2 Pro', categoria: 'Audifonos', stock: 20, precio: 229.99 },
+
+                    // MONITORES
+                    { nombre: 'Dell UltraSharp 4K 32"', categoria: 'Monitores', stock: 4, precio: 899.99 },
+                    { nombre: 'LG UltraWide 34"', categoria: 'Monitores', stock: 6, precio: 699.99 },
+                    { nombre: 'ASUS ProArt 27"', categoria: 'Monitores', stock: 5, precio: 799.99 },
+                    { nombre: 'AOC Gaming 165Hz 27"', categoria: 'Monitores', stock: 10, precio: 499.99 },
+                    { nombre: 'HP Z24n G3', categoria: 'Monitores', stock: 7, precio: 599.99 },
+
+                    // TECLADOS
+                    { nombre: 'Logitech MX Master', categoria: 'Teclados', stock: 12, precio: 99.99 },
+                    { nombre: 'Apple Magic Keyboard', categoria: 'Teclados', stock: 14, precio: 199.99 },
+                    { nombre: 'Corsair K95 RGB', categoria: 'Teclados', stock: 8, precio: 229.99 },
+                    { nombre: 'Keychron K2 Pro', categoria: 'Teclados', stock: 16, precio: 99.99 },
+                    { nombre: 'SteelSeries Apex Pro', categoria: 'Teclados', stock: 9, precio: 199.99 },
+
+                    // MOUSE
+                    { nombre: 'Logitech MX Master 3S', categoria: 'Mouse', stock: 11, precio: 99.99 },
+                    { nombre: 'Apple Magic Mouse', categoria: 'Mouse', stock: 13, precio: 79.99 },
+                    { nombre: 'Razer DeathAdder V3', categoria: 'Mouse', stock: 15, precio: 69.99 },
+                    { nombre: 'SteelSeries Rival 600', categoria: 'Mouse', stock: 10, precio: 59.99 },
+                    { nombre: 'Logitech G502', categoria: 'Mouse', stock: 18, precio: 49.99 }
+                ]
+            };
+
+            contentDiv.innerHTML = `
+                <h5 class="mb-3">¿Deseas cargar datos de ejemplo?</h5>
+                <p class="text-muted small mb-3">
+                    <i class="bi bi-info-circle"></i>
+                    Se agregarán ${datosEjemplo.categorias.length} categorías y ${datosEjemplo.productos.length} productos de tecnología.
+                </p>
+                <div class="list-group mb-3" style="max-height: 250px; overflow-y: auto;">
+                    <h6 class="p-2 bg-light"><i class="bi bi-folder"></i> Categorías:</h6>
+                    ${datosEjemplo.categorias.map(cat => `<small class="list-group-item"><i class="bi bi-folder-fill text-primary"></i> ${cat}</small>`).join('')}
+                </div>
+                <button class="btn btn-success w-100 mb-2" id="cargarBtn">
+                    <i class="bi bi-cloud-download-fill"></i> Cargar Datos de Ejemplo
+                </button>
+                <button class="btn btn-secondary w-100" onclick="window.location.href='productos.html'">
+                    <i class="bi bi-arrow-left"></i> Volver a Productos
+                </button>
+            `;
+
+            document.getElementById('cargarBtn').addEventListener('click', function() {
+                statusDiv.className = 'alert alert-info d-block';
+                statusDiv.innerHTML = '<i class="bi bi-hourglass-split"></i> Cargando datos de ejemplo...';
+                contentDiv.innerHTML = '';
+
+                setTimeout(function() {
+                    // Agregar categorías
+                    let categorias = Storage.getCategorias();
+                    for (const cat of datosEjemplo.categorias) {
+                        if (!categorias.includes(cat)) {
+                            categorias.push(cat);
+                        }
+                    }
+                    Storage.setCategorias(categorias);
+
+                    // Agregar productos
+                    let productos = Storage.getProductos();
+                    for (const prod of datosEjemplo.productos) {
+                        if (!productos.find(p => p.nombre === prod.nombre)) {
+                            productos.push({
+                                id: Date.now() + Math.random(),
+                                nombre: prod.nombre,
+                                categoria: prod.categoria,
+                                stock: prod.stock,
+                                precio: prod.precio
+                            });
+                        }
+                    }
+                    Storage.setProductos(productos);
+
+                    statusDiv.className = 'alert alert-success d-block';
+                    statusDiv.innerHTML = `
+                        <i class="bi bi-check-circle-fill"></i>
+                        <strong>✓ ¡Datos cargados exitosamente!</strong><br>
+                        Se agregaron ${datosEjemplo.categorias.length} categorías y ${datosEjemplo.productos.length} productos de tecnología.<br>
+                        <a href="productos.html" class="alert-link">Ver productos ahora →</a>
+                    `;
+                    contentDiv.innerHTML = '';
+                }, 1500);
+            });
+
+            // Si ya hay datos
+            let existenProductos = Storage.getProductos().length > 0;
+            if (existenProductos) {
+                statusDiv.className = 'alert alert-warning d-block';
+                statusDiv.innerHTML = '<i class="bi bi-exclamation-triangle-fill"></i> Ya hay productos en el sistema.';
+                contentDiv.innerHTML = `
+                    <div class="alert alert-info mt-3">
+                        <p>Si deseas agregar más productos de ejemplo, puedes hacerlo:</p>
+                        <ul class="mb-0">
+                            <li>Presiona el botón abajo para agregar nuevos</li>
+                            <li>O ve a <strong>Productos</strong> para gestionar los existentes</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-success w-100 mb-2" id="cargarBtn">
+                        <i class="bi bi-cloud-download-fill"></i> Agregar Más Datos
+                    </button>
+                    <button class="btn btn-secondary w-100" onclick="window.location.href='productos.html'">
+                        <i class="bi bi-arrow-left"></i> Volver a Productos
+                    </button>
+                `;
+
+                document.getElementById('cargarBtn').addEventListener('click', function() {
+                    statusDiv.className = 'alert alert-info d-block';
+                    statusDiv.innerHTML = '<i class="bi bi-hourglass-split"></i> Agregando datos adicionales...';
+                    contentDiv.innerHTML = '';
+
+                    setTimeout(function() {
+                        // Agregar categorías nuevas
+                        let categorias = Storage.getCategorias();
+                        for (const cat of datosEjemplo.categorias) {
+                            if (!categorias.includes(cat)) {
+                                categorias.push(cat);
+                            }
+                        }
+                        Storage.setCategorias(categorias);
+
+                        // Agregar productos nuevos
+                        let productos = Storage.getProductos();
+                        let productosAgregados = 0;
+                        for (const prod of datosEjemplo.productos) {
+                            if (!productos.find(p => p.nombre === prod.nombre)) {
+                                productos.push({
+                                    id: Date.now() + Math.random(),
+                                    nombre: prod.nombre,
+                                    categoria: prod.categoria,
+                                    stock: prod.stock,
+                                    precio: prod.precio
+                                });
+                                productosAgregados++;
+                            }
+                        }
+                        Storage.setProductos(productos);
+
+                        statusDiv.className = 'alert alert-success d-block';
+                        statusDiv.innerHTML = `
+                            <i class="bi bi-check-circle-fill"></i>
+                            <strong>✓ ¡Datos agregados!</strong><br>
+                            Se agregaron ${productosAgregados} nuevos productos de tecnología.<br>
+                            <a href="productos.html" class="alert-link">Ver todos los productos →</a>
+                        `;
+                        contentDiv.innerHTML = '';
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Gestión de Inventario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="gradient-primary">
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2 class="text-center mb-2"><i class="bi bi-box-seam"></i> Inventario</h2>
+            <p class="text-center auth-card-subtitle">Sistema de Gestión de Inventario</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="usuario" class="form-label">
+                        <i class="bi bi-person-circle"></i> Usuario
+                    </label>
+                    <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="bi bi-lock-fill"></i> Contraseña
+                    </label>
+                    <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2 mt-3">
+                    <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                </button>
+            </form>
+
+            <div class="auth-divider"><span>¿No tienes cuenta?</span></div>
+
+            <a href="register.html" class="btn btn-success w-100 py-2">
+                <i class="bi bi-person-plus-fill"></i> Registrarse Aquí
+            </a>
+
+            <div class="auth-link mt-3">
+                <small class="text-muted">
+                    <i class="bi bi-info-circle"></i>
+                    <a href="init.html" class="ms-2">¿Primera vez?</a>
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
